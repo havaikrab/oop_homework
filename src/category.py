@@ -8,37 +8,55 @@ class Category:
 
     name: str
     description: str
-    __products: list
+    __products: list[Product]
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: Optional[list] = None):
+    def __init__(self, name: str, description: str, products: Optional[list[Product]] = None):
         """Метод инициализации экземпляра класса"""
 
         self.name = name
         self.description = description
         if products is None:
-            products = []
-        self.__products = products
+            self.__products = []
+        else:
+            for element in products:
+                if not isinstance(element, Product):
+                    raise TypeError(f"Класс переменной должен быть Product вместо {type(element)}")
+            self.__products = products
         Category.category_count += 1
-        Category.product_count += len(products)
+        Category.product_count += len(self.__products)
 
     @property
     def products(self) -> str:
         """Геттер приватного атрибута __products,
         возвращает каждый объект из списка продуктов категории в виде форматированной строки."""
+
         result = ""
         for product in self.__products:
             result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return result
 
-    def add_product(self, product: Product) -> None:
-        """Метод добавления продукта в список продуктов категории.
-        Если в категории уже существует добавляемый продукт,
-        то количество существующего объекта увеличивается на значение количества добавляемого объекта."""
+    @property
+    def products_list(self) -> list:
+        """Геттер приватного атрибута __products, возвращает оригинальный список объектов-продуктов категории."""
 
-        if product not in self.__products:
+        return self.__products
+
+    def add_product(self, product: Product) -> None:
+        """Метод добавления продукта в список продуктов категории"""
+
+        if not isinstance(product, Product):
+            raise TypeError(f"Класс переменной должен быть Product вместо {type(product)}")
+
+        update_status = False
+        for element in self.__products:
+            if element.name == product.name:
+                element.quantity += product.quantity
+                if element.price < product.price:
+                    element.price = product.price
+                update_status = True
+            break
+        if not update_status:
             self.__products.append(product)
             Category.product_count += 1
-        else:
-            self.__products[self.__products.index(product)].quantity += product.quantity
