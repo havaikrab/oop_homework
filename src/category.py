@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Optional
 
 from src.product import Product
 
@@ -12,10 +12,10 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: Optional[list[Product]] = None):
+    def __init__(self, name: Any, description: Any, products: Optional[list] = None):
         """Метод инициализации экземпляра класса"""
 
-        self.name = name
+        self.name: str = name
         self.description = description
         if products is None:
             self.__products = []
@@ -43,7 +43,7 @@ class Category:
 
         return self.__products
 
-    def add_product(self, product: Product) -> None:
+    def add_product(self, product: Any) -> None:
         """Метод добавления продукта в список продуктов категории"""
 
         if not isinstance(product, Product):
@@ -56,7 +56,7 @@ class Category:
                 if element.price < product.price:
                     element.price = product.price
                 update_status = True
-            break
+                break
         if not update_status:
             self.__products.append(product)
             Category.product_count += 1

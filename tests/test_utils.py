@@ -47,14 +47,14 @@ def test_extract_categories() -> None:
     assert result[1].name == "Телевизоры"
     assert result[0].description == "Смартфоны, как средство коммуникации"
     assert result[1].description == "Современный телевизор, который позволяет наслаждаться просмотром"
-    assert result[0].products[0].name == "Samsung Galaxy C23 Ultra"
-    assert result[1].products[0].name == '55" QLED 4K'
-    assert result[0].products[1].description == "512GB, Gray space"
-    assert result[1].products[0].description == "Фоновая подсветка"
-    assert result[0].products[2].price == 31000.0
-    assert result[1].products[0].price == 123000.0
-    assert result[0].products[0].quantity == 5
-    assert result[1].products[0].quantity == 7
+    assert result[0].products_list[0].name == "Samsung Galaxy C23 Ultra"
+    assert result[1].products_list[0].name == '55" QLED 4K'
+    assert result[0].products_list[1].description == "512GB, Gray space"
+    assert result[1].products_list[0].description == "Фоновая подсветка"
+    assert result[0].products_list[2].price == 31000.0
+    assert result[1].products_list[0].price == 123000.0
+    assert result[0].products_list[0].quantity == 5
+    assert result[1].products_list[0].quantity == 7
     mocked_data.assert_called_once_with("some_file.json", "r", encoding="utf-8")
 
     Category.category_count = actual_category_count

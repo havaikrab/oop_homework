@@ -9,8 +9,13 @@ class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Метод инициализации экземпляра класса"""
 
-        if not name:
-            raise ValueError("Продукт должен иметь название!")
+        if (
+            not isinstance(name, str)
+            or not isinstance(description, str)
+            or not isinstance(price, float | int)
+            or not isinstance(quantity, int)
+        ):
+            raise TypeError("Тип данных аргумента не соответствует ожидаемому")
         elif price <= 0:
             raise ValueError("Цена не может быть меньше или равной нулю!")
         elif quantity < 0:
