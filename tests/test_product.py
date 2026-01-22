@@ -101,3 +101,12 @@ def test_new_product(product_dict: dict, expected_list: list) -> None:
 def test_new_product_invalid_values(product_dict: dict) -> None:
     with pytest.raises(ValueError):
         Product.new_product(product_dict)
+
+
+def test_product_add_invalid_type(product_phone1: Product) -> None:
+    with pytest.raises(TypeError):
+        product_phone1 + "Другой телефон"  # type: ignore
+
+
+def test_product_add(product_phone2: Product, product_another_phone2: Product) -> None:
+    assert product_phone2 + product_another_phone2 == 459000.0

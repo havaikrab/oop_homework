@@ -30,6 +30,15 @@ class Product:
 
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
+    def __add__(self, other_product: "Product") -> float:
+        """Метод "сложения" продуктов, позволяет вычислять суммарную стоимость всего количества продуктов.
+        При передаче аргумента класса Product его суммарная стоимость складывается с суммарной стоимостью
+        self-продукта"""
+
+        if not isinstance(other_product, Product):
+            raise TypeError(f"Аргумент должен быть класса Product вместо {type(other_product)}")
+        return float(self.price * self.quantity + other_product.price * other_product.quantity)
+
     @property
     def price(self) -> float:
         """Геттер приватного атрибута __price, возвращает значение цены продукта."""
