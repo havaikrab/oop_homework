@@ -11,7 +11,6 @@ class Category:
     __products: list[Product]
     category_count = 0
     product_count = 0
-    total_products_count = 0
 
     def __init__(self, name: Any, description: Any, products: Optional[list] = None):
         """Метод инициализации экземпляра класса"""
@@ -27,14 +26,15 @@ class Category:
             self.__products = products
         Category.category_count += 1
         Category.product_count += len(self.__products)
-        for product in self.__products:
-            self.total_products_count += product.quantity
 
     def __str__(self) -> str:
         """Возвращает форматированную строку с названием категории
         и суммарным количеством продуктов, принадлежащих ей."""
 
-        return f"{self.name}, количество продуктов: {self.total_products_count} шт."
+        total_products_count = 0
+        for product in self.__products:
+            total_products_count += product.quantity
+        return f"{self.name}, количество продуктов: {total_products_count} шт."
 
     @property
     def products(self) -> str:
@@ -61,13 +61,11 @@ class Category:
         update_status = False
         for element in self.__products:
             if element.name == product.name:
-                self.total_products_count += product.quantity
                 element.quantity += product.quantity
                 if element.price < product.price:
                     element.price = product.price
                 update_status = True
                 break
         if not update_status:
-            self.total_products_count += product.quantity
             self.__products.append(product)
             Category.product_count += 1
