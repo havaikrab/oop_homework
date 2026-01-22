@@ -25,6 +25,11 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        """Возвращает форматированную строку с названием, ценой и количеством продукта"""
+
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
     @property
     def price(self) -> float:
         """Геттер приватного атрибута __price, возвращает значение цены продукта."""
