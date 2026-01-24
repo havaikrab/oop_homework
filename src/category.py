@@ -27,6 +27,15 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
+    def __str__(self) -> str:
+        """Возвращает форматированную строку с названием категории
+        и суммарным количеством продуктов, принадлежащих ей."""
+
+        total_products_count = 0
+        for product in self.__products:
+            total_products_count += product.quantity
+        return f"{self.name}, количество продуктов: {total_products_count} шт."
+
     @property
     def products(self) -> str:
         """Геттер приватного атрибута __products,
@@ -34,7 +43,7 @@ class Category:
 
         result = ""
         for product in self.__products:
-            result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            result += f"{str(product)}\n"
         return result
 
     @property

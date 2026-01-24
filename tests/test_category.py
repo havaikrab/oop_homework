@@ -24,6 +24,7 @@ def test_class_category(
         "Iphone 15, 300000.0 руб. Остаток: 5 шт.",
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.",
     ]
+    assert str(phones) == "Смартфоны, количество продуктов: 27 шт."
     assert Category.category_count == actual_category_count + 1
     assert Category.product_count == actual_product_count + 3
 
@@ -31,6 +32,7 @@ def test_class_category(
     assert tv.name == "Телевизоры"
     assert tv.description == "Источник хорошего настроения"
     assert tv.products == ""
+    assert str(tv) == "Телевизоры, количество продуктов: 0 шт."
     assert Category.category_count == actual_category_count + 2
     assert Category.product_count == actual_product_count + 3
 
@@ -61,6 +63,7 @@ def test_category_add_product(
     phones.add_product(product_phone1)
     assert phones.products == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
     assert phones.products_list[0].description == "512GB, Gray space"
+    assert str(phones) == "Смартфоны, количество продуктов: 8 шт."
     phones.add_product(product_phone2)
     phones.add_product(product_another_phone1)
     assert phones.products.strip().split("\n") == [
@@ -68,9 +71,18 @@ def test_category_add_product(
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.",
     ]
     assert phones.products_list[0].description == "512GB, Gray space"
+    assert str(phones) == "Смартфоны, количество продуктов: 27 шт."
     phones.add_product(product_another_phone2)
     assert phones.products.strip().split("\n") == [
         "Iphone 15, 300000.0 руб. Остаток: 13 шт.",
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 15 шт.",
     ]
     assert phones.products_list[1].description == "1024GB, Синий"
+    assert str(phones) == "Смартфоны, количество продуктов: 28 шт."
+    phones.add_product(product_another_phone2)
+    assert phones.products.strip().split("\n") == [
+        "Iphone 15, 300000.0 руб. Остаток: 13 шт.",
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 16 шт.",
+    ]
+    assert phones.products_list[1].description == "1024GB, Синий"
+    assert str(phones) == "Смартфоны, количество продуктов: 29 шт."
