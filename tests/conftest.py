@@ -41,3 +41,13 @@ def category_attributes_tv() -> tuple:
 @pytest.fixture
 def phone_names_list() -> list:
     return ["Samsung Galaxy S23 Ultra", "Iphone 15", "Xiaomi Redmi Note 11"]
+
+
+@pytest.fixture
+def attributes_grass_1() -> tuple:
+    return "Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый"
+
+
+@pytest.fixture
+def attributes_smartphone_1() -> tuple:
+    return "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
