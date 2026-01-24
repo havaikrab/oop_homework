@@ -35,7 +35,7 @@ class Product:
         При передаче аргумента класса Product его суммарная стоимость складывается с суммарной стоимостью
         self-продукта"""
 
-        if not isinstance(other_product, Product) or not isinstance(other_product, type(self)):
+        if not isinstance(other_product, type(self)):
             raise TypeError("Объекты должны принадлежать одному классу и подклассу")
         return float(self.price * self.quantity + other_product.price * other_product.quantity)
 
