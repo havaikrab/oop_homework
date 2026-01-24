@@ -15,7 +15,7 @@ class Smartphone(Product):
         memory: int,
         color: str,
     ):
-        """Метод инициализации объекта класса"""
+        """Метод инициализации объекта класса Smartphone"""
 
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency

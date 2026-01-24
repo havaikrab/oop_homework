@@ -14,7 +14,7 @@ class LawnGrass(Product):
         germination_period: str,
         color: str,
     ):
-        """Метод инициализации объекта класса"""
+        """Метод инициализации объекта класса LawnGrass"""
 
         super().__init__(name, description, price, quantity)
         self.country = country
