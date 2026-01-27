@@ -3,7 +3,9 @@ from unittest.mock import patch
 
 import pytest
 
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_class_prodict(attributes_phone1: tuple) -> None:
@@ -106,6 +108,11 @@ def test_new_product_invalid_values(product_dict: dict) -> None:
 def test_product_add_invalid_type(product_phone1: Product) -> None:
     with pytest.raises(TypeError):
         product_phone1 + "Другой телефон"  # type: ignore
+
+
+def test_product_add_invalid_subclass(smartphone_1: Smartphone, grass_1: LawnGrass) -> None:
+    with pytest.raises(TypeError):
+        smartphone_1 + grass_1
 
 
 def test_product_add(product_phone2: Product, product_another_phone2: Product) -> None:

@@ -35,10 +35,13 @@ lines_after_imports = 2
 line-length = 119
 exclude = '''
 /(
-\.git
-| \.mypy_cache
-| \.venv
-| dist
+\.venv|
+\.git|
+\.mypy_cache|
+\.pytest_cache|
+build|
+dist
+venv
 )/
 '''
 
