@@ -45,7 +45,11 @@ def test_price_setter_invalid_value(capsys: Any, product_phone1: Product) -> Non
     product_phone1.price = 0
     console_message = capsys.readouterr()
     assert product_phone1.price == 210000.0
-    assert console_message.out == "Цена не должна быть нулевая или отрицательная\n"
+    assert (
+        console_message.out
+        == """Product('Iphone 15', '512GB, Gray space', 210000.0, 8)
+Цена не должна быть нулевая или отрицательная\n"""
+    )
 
 
 @patch("builtins.input")

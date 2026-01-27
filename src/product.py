@@ -1,7 +1,8 @@
 from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 
-class Product(BaseProduct):
+class Product(PrintMixin, BaseProduct):
     """Класс с описанием продукта"""
 
     name: str
@@ -27,6 +28,7 @@ class Product(BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         """Возвращает форматированную строку с названием, ценой и количеством продукта"""
