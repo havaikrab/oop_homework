@@ -1,3 +1,5 @@
+from typing import Any
+
 from src.base_product import BaseProduct
 from src.print_mixin import PrintMixin
 
@@ -10,7 +12,7 @@ class Product(PrintMixin, BaseProduct):
     __price: float
     quantity: int
 
-    def __init__(self, name: str, description: str, price: float, quantity: int):
+    def __init__(self, name: str, description: str, price: float, quantity: int, *args: Any, **kwargs: dict):
         """Метод инициализации экземпляра класса"""
 
         if (
@@ -28,7 +30,9 @@ class Product(PrintMixin, BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
-        super().__init__()
+        self._args = (name, description, price, quantity, *args)
+        self._kwargs = kwargs
+        super().__init__(*self._args)
 
     def __str__(self) -> str:
         """Возвращает форматированную строку с названием, ценой и количеством продукта"""

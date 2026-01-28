@@ -65,3 +65,13 @@ def attributes_grass_1() -> tuple:
 @pytest.fixture
 def grass_1() -> LawnGrass:
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def print_mixin_args() -> tuple:
+    return 1, "2", [3], (4.4, "four"), {"5.5": 5}
+
+
+@pytest.fixture
+def print_mixin_kwargs() -> dict:
+    return {"six": 6, "seven": (7, 7.7), "eight": [8, 8.0], "nine": {9: 9.0}}

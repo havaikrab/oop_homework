@@ -17,7 +17,8 @@ class Smartphone(Product):
     ):
         """Метод инициализации объекта класса Smartphone"""
 
-        super().__init__(name, description, price, quantity)
+        self._args = (name, description, price, quantity, efficiency, model, memory, color)
+        super().__init__(*self._args)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
