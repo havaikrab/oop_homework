@@ -75,3 +75,8 @@ def print_mixin_args() -> tuple:
 @pytest.fixture
 def print_mixin_kwargs() -> dict:
     return {"six": 6, "seven": (7, 7.7), "eight": [8, 8.0], "nine": {9: 9.0}}
+
+
+@pytest.fixture
+def some_order_attributes() -> tuple:
+    return "Покупка", "Покупка телефона"

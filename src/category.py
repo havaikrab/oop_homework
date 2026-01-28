@@ -1,13 +1,12 @@
 from typing import Any, Optional
 
+from src.base_category import BaseCategory
 from src.product import Product
 
 
-class Category:
+class Category(BaseCategory):
     """Класс с описанием категории продуктов"""
 
-    name: str
-    description: str
     __products: list[Product]
     category_count = 0
     product_count = 0
