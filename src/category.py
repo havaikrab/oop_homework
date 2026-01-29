@@ -68,3 +68,16 @@ class Category(BaseCategory):
         if not update_status:
             self.__products.append(product)
             Category.product_count += 1
+
+    def middle_price(self) -> float:
+        """Метод, возвращающий среднюю цену продуктов, принадлежащих данной категории"""
+
+        avg_price = 0.0
+        try:
+            return round(
+                sum([product.price * product.quantity for product in self.__products])
+                / sum([product.quantity for product in self.__products]),
+                2,
+            )
+        except ZeroDivisionError:
+            return avg_price

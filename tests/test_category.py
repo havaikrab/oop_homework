@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_class_category(
@@ -86,3 +87,13 @@ def test_category_add_product(
     ]
     assert phones.products_list[1].description == "1024GB, Синий"
     assert str(phones) == "Смартфоны, количество продуктов: 29 шт."
+
+
+def test_middle_price(product_phone1: Product, product_another_phone2: Product, smartphone_1: Smartphone) -> None:
+    phones = Category("Телефоны", "Различные телефоны", [product_phone1, product_another_phone2, smartphone_1])
+    assert phones.middle_price() == 186071.43
+
+
+def test_middle_price_empty_products(category_attributes_phones: tuple) -> None:
+    phones = Category(*category_attributes_phones)
+    assert phones.middle_price() == 0.0
