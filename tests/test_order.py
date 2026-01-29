@@ -1,5 +1,9 @@
+import pytest
+
+from src.exceptions import NotPositiveQuantityError
 from src.order import Order
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_class_order(some_order_attributes: tuple, product_another_phone1: Product) -> None:
@@ -16,3 +20,9 @@ def test_class_order(some_order_attributes: tuple, product_another_phone1: Produ
     assert some_order.order_number == actual_order_number
 
     Order.order_number = actual_order_number
+
+
+def test_not_positive_product_quantity(smartphone_1: Smartphone) -> None:
+    smartphone_1.quantity = -10
+    with pytest.raises(NotPositiveQuantityError, match="Заказ должен содержать хотя бы одну единицу продукта"):
+        Order("Покупка телефона", "Онлайн-покупка смартфона", smartphone_1)

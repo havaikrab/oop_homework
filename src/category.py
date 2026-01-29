@@ -1,6 +1,7 @@
 from typing import Any, Optional
 
 from src.base_category import BaseCategory
+from src.exceptions import NotPositiveQuantityError
 from src.product import Product
 
 
@@ -22,6 +23,8 @@ class Category(BaseCategory):
             for element in products:
                 if not isinstance(element, Product):
                     raise TypeError(f"Класс переменной должен быть Product вместо {type(element)}")
+                elif element.quantity <= 0:
+                    raise NotPositiveQuantityError()
             self.__products = products
         Category.category_count += 1
         Category.product_count += len(self.__products)
@@ -56,6 +59,8 @@ class Category(BaseCategory):
 
         if not isinstance(product, Product):
             raise TypeError(f"Класс переменной должен быть Product вместо {type(product)}")
+        elif product.quantity <= 0:
+            raise NotPositiveQuantityError("Попытка добавить продукт с неположительным количеством")
 
         update_status = False
         for element in self.__products:
