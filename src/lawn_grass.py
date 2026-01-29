@@ -16,7 +16,8 @@ class LawnGrass(Product):
     ):
         """Метод инициализации объекта класса LawnGrass"""
 
-        super().__init__(name, description, price, quantity)
+        self._args = (name, description, price, quantity, country, germination_period, color)
+        super().__init__(*self._args)
         self.country = country
         self.germination_period = germination_period
         self.color = color
