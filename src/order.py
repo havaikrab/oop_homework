@@ -1,4 +1,5 @@
 from src.base_category import BaseCategory
+from src.exceptions import NotPositiveQuantityError
 from src.product import Product
 
 
@@ -13,6 +14,8 @@ class Order(BaseCategory):
 
         self.name = name
         self.description = description
+        if product.quantity <= 0:
+            raise NotPositiveQuantityError("Заказ должен содержать хотя бы одну единицу продукта")
         self.product = product
         self.order_number = Order.order_number
         Order.order_number += 1

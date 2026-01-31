@@ -86,8 +86,8 @@ def test_price_setter_reject_price_lower(mock_accept: Any, product_phone1: Produ
             ["Что-то", "Что-то тестовое", 100.0, 5],
         ),
         (
-            {"name": "Еще что-то", "description": "Опять что-то тестовое", "price": 99.99},
-            ["Еще что-то", "Опять что-то тестовое", 99.99, 0],
+            {"name": "Еще что-то", "description": "Опять что-то тестовое", "price": 99.99, "quantity": 1},
+            ["Еще что-то", "Опять что-то тестовое", 99.99, 1],
         ),
     ],
 )
@@ -102,6 +102,7 @@ def test_new_product(product_dict: dict, expected_list: list) -> None:
         ({"name": None, "description": "Что-то безымянное", "price": 100, "quantity": 5}),
         ({"name": "Что-то неопределенное", "description": None, "price": 99.99, "quantity": 3}),
         ({"name": "Еще что-то", "description": "Что-то бесценное", "quantity": 10}),
+        ({"name": "Опять что-то", "description": "Что-то, чего нет", "price": 5}),
     ],
 )
 def test_new_product_invalid_values(product_dict: dict) -> None:
